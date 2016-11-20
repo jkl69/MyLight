@@ -14,7 +14,7 @@ import java.net.SocketException;
 
  public class UDPsend implements Runnable {
 
-    public String ip= "192.168.70.38";
+    public String ip= "192.168.70.21";
     public int port=5005;
     private InetAddress serverAddr;
     public String mesg="Hallo Welt";

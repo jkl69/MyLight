@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">My UDP</string>
+    <string name="app_name">MyLight</string>
     <string name="button_send">send</string>
     <string name="hello_world">send</string>
+    <string name="IP">192.168.70.21</string>
+    <string name="PORT">5005</string>
 </resources>
