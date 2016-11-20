@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My UDP</string>
+    <string name="button_send">send</string>
+    <string name="hello_world">send</string>
+</resources>
