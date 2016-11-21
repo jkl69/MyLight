@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">MyLight</string>
-    <string name="button_send">send</string>
+    <string name="send_color">send</string>
     <string name="hello_world">send</string>
-    <string name="IP">192.168.70.21</string>
-    <string name="PORT">5005</string>
+    <string name="IP">Light Address</string>
+    <string name="PORT">Set Port</string>
+    <string name="B1">OK</string>
+    <string name="B2">Cancel</string>
 </resources>
