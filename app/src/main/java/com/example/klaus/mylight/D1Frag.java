@@ -19,8 +19,12 @@ import java.net.InetAddress;
  */
 
 public class D1Frag extends DialogFragment {
+
+    public Addr addr;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+//        Log.i("Udp:", "use Settings "+IPtext+":"+String.valueOf(PORT));
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.connection, null);
         AlertDialog.Builder P1 = new AlertDialog.Builder(getActivity());
@@ -28,22 +32,20 @@ public class D1Frag extends DialogFragment {
         P1.setView(view);
         final EditText IPinput = (EditText) view.findViewById(R.id.IP);
         final EditText PORTinput = (EditText) view.findViewById(R.id.PORT);
-        IPinput.setText(UDPsend.ip);
-        PORTinput.setText(String.valueOf(UDPsend.port));
+        IPinput.setText(Addr.IPtext);
+        PORTinput.setText(String.valueOf(Addr.PORT));
         P1.setTitle("Light Address").
             setPositiveButton(R.string.B1, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    String IPtext= IPinput.getText().toString();
-                    int PORT = Integer.valueOf(PORTinput.getText().toString());
+                    Addr.IPtext= IPinput.getText().toString();
+                    Addr.PORT = Integer.valueOf(PORTinput.getText().toString());
                     try {
-                        InetAddress serverAddr = InetAddress.getByName(IPtext);
-                        Log.i("Udp:", "VALID HOST "+IPtext+":"+PORTinput.getText().toString());
-                        UDPsend.ip = IPtext;
-                        UDPsend.port = PORT;
+                        InetAddress serverAddr = InetAddress.getByName(Addr.IPtext);
+                        Log.i("Udp:", "VALID HOST "+Addr.IPtext+":"+PORTinput.getText().toString());
 //                        if (! serverAddr.isReachable(1000)) {Log.e("Udp:", "INVALID HOST 2"+IPtext); }
                     } catch (Exception e) {
-                        Toast.makeText(getActivity(), "INVALID HOST "+IPtext, Toast.LENGTH_LONG).show();
-                        Log.e("Udp:", "INVALID HOST "+IPtext);
+                        Toast.makeText(getActivity(), "INVALID HOST "+Addr.IPtext, Toast.LENGTH_LONG).show();
+                        Log.e("Udp:", "INVALID HOST "+Addr.IPtext);
                     }
                 }
         })

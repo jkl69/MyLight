@@ -25,16 +25,21 @@ public class MainActivity extends AppCompatActivity {
     private GradientView mBottom;
     private TextView mTextView;
     private Drawable mIcon;
+    private String colormsg="";
 
-    private SharedPreferences pref;
+//    private SharedPreferences pref;
     private D1Frag DialFrag = new D1Frag();
+//    private String IP;
+//    private int PORT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pref = this.getPreferences(Context.MODE_PRIVATE);
-        UDPsend.ip = pref.getString("saved_IP", "127.0.0.1");
-        UDPsend.port = pref.getInt("saved_PORT", 5005);
+        Addr.pref = this.getPreferences(Context.MODE_PRIVATE);
+//        UDPsend.ip = pref.getString("saved_IP", "127.0.0.1");
+//        UDPsend.port = pref.getInt("saved_PORT", 5005);
+        Addr.IPtext = Addr.pref.getString("saved_IP", "127.0.0.1");
+        Addr.PORT = Addr.pref.getInt("saved_PORT", 5005);
         setContentView(R.layout.activity_main);
         mIcon = getResources().getDrawable(R.mipmap.ic_launcher);
 //        mIcon = this.getResources().getDrawable(R.mipmap.ic_launcher);
@@ -53,9 +58,14 @@ public class MainActivity extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     mIcon.setTint(color);
                 }
-                sendData("COLOR=r:"+Integer.toString(Color.red(color))+
-                        ",g:"+Integer.toString(Color.green(color))+
-                        ",b:"+Integer.toString(Color.blue(color)));
+                String cmsg= "Color="+Integer.toString(Color.red(color))+
+                        ","+Integer.toString(Color.green(color))+
+                        ","+Integer.toString(Color.blue(color));
+                if (! cmsg.equals(colormsg)) {
+                    Log.i("Udp:", "newColor");
+                    colormsg= cmsg;
+                    sendData(colormsg);
+                }
             }
         });
     }
@@ -66,7 +76,10 @@ public class MainActivity extends AppCompatActivity {
 //        udpSend = new UDPsend();
         udpSend = new TCPsend();
         th = new Thread(udpSend);
-//        udpSend.mesg= text;
+        udpSend.activity=this;
+        udpSend.ip= Addr.IPtext;
+        udpSend.port= Addr.PORT;
+        udpSend.mesg= text;
         th.start();
     }
 
@@ -80,13 +93,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.IP:
+//                DialFrag.IPtext=pref.getString("saved_IP", "127.0.0.1");
+//                DialFrag.PORT= pref.getInt("saved_PORT", 5005);
                 DialFrag.show(getSupportFragmentManager(), "connectTo");
 //                Toast.makeText(this, "IP gedrückt!", Toast.LENGTH_LONG).show();
-                Log.i("Udp:", "save Settings "+UDPsend.ip);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("saved_IP", UDPsend.ip);
-                editor.putInt("saved_PORT", UDPsend.port);
+                SharedPreferences.Editor editor = Addr.pref.edit();
+                editor.putString("saved_IP", Addr.IPtext);
+                editor.putInt("saved_PORT", Addr.PORT);
                 editor.commit();
+                Log.i("Udp:", "save Settings "+Addr.IPtext+":"+String.valueOf(Addr.PORT));
                 return true;
 //            case R.id.PORT:
 //                Toast.makeText(this, "PORT gedrückt!", Toast.LENGTH_LONG).show();
