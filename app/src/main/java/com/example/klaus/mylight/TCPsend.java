@@ -35,7 +35,7 @@ import java.net.Socket;
     public void run() {
         String result="OK";
         try{
-            Log.e("TCP Send:", "Try send to "+ip+":"+String.valueOf(port));
+            Log.e("TCP Send:", "Try send "+mesg+" to "+ip+":"+String.valueOf(port));
 // Creating new socket connection to the IP (first parameter) and its opened port (second parameter)
             Socket s = new Socket(ip, port);
             DataOutputStream DOS = new DataOutputStream(s.getOutputStream());
