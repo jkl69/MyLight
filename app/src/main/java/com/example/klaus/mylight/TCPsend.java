@@ -17,7 +17,7 @@ import java.net.Socket;
  public class TCPsend implements Runnable {
 
     static public String ip= "192.168.70.21";
-    static public int port=5005;
+    static public int port=80;
     private InetAddress serverAddr;
     public String mesg="Hallo Welt";
     public Activity activity = null;// reference to an Activity

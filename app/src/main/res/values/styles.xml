@@ -19,4 +19,8 @@
         <item name="android:textColor">@android:color/darker_gray</item>
     </style>
 
+    <style name="MySeekBarTheme" parent="@android:style/Widget.SeekBar" >
+        <item name="colorAccent">#ff1e00</item>
+    </style>
+
 </resources>

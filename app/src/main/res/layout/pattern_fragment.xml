@@ -7,20 +7,38 @@
     tools:context=".patternFragment">
 
     <Button
-        android:text="Pattern 1"
+        android:text="Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button1" />
 
     <Button
-        android:text="Pattern 2"
+        android:text="Fade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button2" />
 
     <Button
-        android:text="Pattern 3"
+        android:text="Rectacles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button3" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:max="255"
+        android:progressTint="@android:color/holo_red_dark"
+        android:progress="100"
+        style="@style/MySeekBarTheme" />
+
+    <SeekBar
+        style="@android:style/Widget.SeekBar"
+        android:progressTint="@android:color/holo_green_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:progress="3"
+        android:id="@+id/seekBar2" />
 </LinearLayout>

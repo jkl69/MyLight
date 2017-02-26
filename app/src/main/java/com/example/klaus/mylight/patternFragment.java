@@ -33,7 +33,21 @@ public class patternFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Do something in response to button click
-                sendData("pattern=h");
+                sendData("Pattern=h");
+            }
+        });
+        button = (Button) view.findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Do something in response to button click
+                sendData("Pattern=f");
+            }
+        });
+        button = (Button) view.findViewById(R.id.button3);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Do something in response to button click
+                sendData("Pattern=r");
             }
         });
         return view;
